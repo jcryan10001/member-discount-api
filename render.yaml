@@ -1,0 +1,29 @@
+# Render Blueprint: one free Docker web service running Laravel (API + SPA).
+# Almost everything lives in the Dockerfile; this just wires the service and its
+# environment. Deploy via Render's "New" then "Blueprint", or set the same values
+# manually in the dashboard.
+services:
+  - type: web
+    name: member-discount-api
+    runtime: docker
+    plan: free
+    dockerfilePath: ./Dockerfile
+    # The SPA catch-all serves the app shell for any non-/api path, so "/" returns
+    # a clean 200 and is the right health check. (The framework's /up route would
+    # be served the HTML shell instead, since the catch-all doesn't exclude it.)
+    healthCheckPath: /
+    envVars:
+      # Generate with `php artisan key:generate --show` and paste the full
+      # base64:... value here (or set it in the dashboard). Never commit it.
+      - key: APP_KEY
+        sync: false
+      - key: APP_ENV
+        value: production
+      - key: APP_DEBUG
+        value: false
+      - key: DB_CONNECTION
+        value: sqlite
+      # Set to the live service URL after the first deploy so absolute URLs and
+      # forced-HTTPS links are correct.
+      - key: APP_URL
+        sync: false

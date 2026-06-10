@@ -1,0 +1,26 @@
+# Keep the build context small and deterministic.
+.git
+**/node_modules
+
+# Vendored deps and the local env are rebuilt or injected, never copied.
+api/vendor
+api/.env
+api/.env.backup
+api/.phpunit.result.cache
+api/storage/logs/*
+
+# The seeded SQLite DB is created fresh at build time.
+api/database/database.sqlite
+api/database/*.sqlite-journal
+api/database/*.sqlite-wal
+api/database/*.sqlite-shm
+
+# React build artifacts: the image builds its own from source, so don't bake any
+# stale local output. Laravel's own public/index.php and .htaccess are kept.
+api/public/assets
+api/public/index.html
+web/dist
+
+# OS / editor noise
+**/.DS_Store
+**/Thumbs.db

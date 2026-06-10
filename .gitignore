@@ -1,0 +1,27 @@
+# PHP / Laravel (api/)
+/api/vendor/
+/api/.env
+/api/.env.backup
+/api/.phpunit.result.cache
+/api/storage/*.key
+# The SQLite DB is seeded fresh at Docker build time, so it's never committed.
+/api/database/*.sqlite
+/api/database/*.sqlite-journal
+/api/database/*.sqlite-wal
+/api/database/*.sqlite-shm
+
+# Node / Vite (web/)
+/web/node_modules/
+/web/dist/
+/web/.env
+
+# React build output that gets merged into Laravel's public/ at build time.
+# Laravel's own public/index.php, .htaccess and robots.txt stay committed.
+/api/public/assets/
+/api/public/index.html
+
+# OS / editor
+.DS_Store
+Thumbs.db
+.idea/
+.vscode/
