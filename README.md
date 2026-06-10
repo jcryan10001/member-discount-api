@@ -25,10 +25,12 @@ transaction. It is covered gate by gate in
 
 ## Live demo
 
-- **Live URL:** `https://YOUR-APP.onrender.com`  (replace this once deployed)
-- The first load can take 30 to 60 seconds while the free-tier server wakes from
-  sleep. The app shows a friendly "waking up" screen rather than a blank page, so
-  that wait is expected, not a bug.
+- **Live URL:** https://member-discount-api.onrender.com
+- **Log in with:** `nurse@demo.test` / `password` (a verified healthcare member, start here).
+- This demo runs on a free tier that sleeps after a period of inactivity, so the
+  first request can take up to 50 seconds or more to wake the server, after which
+  it is responsive. The app shows a "waking up" screen during that time rather than
+  a blank page, so the wait is expected, not a bug.
 
 Seeded accounts (all use the password `password`):
 

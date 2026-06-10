@@ -7,11 +7,12 @@ const RETRY_MS = 2000
 const MAX_ATTEMPTS = 40 // ~80s ceiling, comfortably covering a free-tier cold start
 
 /**
- * The backend runs on a free tier that sleeps after about 15 minutes idle, with
- * a 30 to 60 second cold start. Instead of a blank screen or a scary error on
- * first load, this gate pings /api/health on boot and retries until the server
- * wakes, showing a calm, deliberate loading state. A warm server passes straight
- * through; the message only appears if the first ping is slow.
+ * The backend runs on a free tier that sleeps after a period of inactivity, and
+ * the first request can take up to 50 seconds or more to wake it. Instead of a
+ * blank screen or a scary error on first load, this gate pings /api/health on
+ * boot and retries until the server wakes, showing a calm, deliberate loading
+ * state. A warm server passes straight through; the message only appears if the
+ * first ping is slow.
  */
 export default function ColdStartGate({ children }: { children: ReactNode }) {
   const [status, setStatus] = useState<'waking' | 'ready' | 'error'>('waking')
@@ -52,8 +53,8 @@ export default function ColdStartGate({ children }: { children: ReactNode }) {
             <div className="max-w-sm">
               <p className="font-medium text-slate-700">Waking up the demo server...</p>
               <p className="mt-1 text-sm text-slate-500">
-                It runs on a free tier that sleeps when idle, so the first load can take 30 to 60
-                seconds. Thanks for your patience.
+                It runs on a free tier that sleeps after inactivity, so the first load can take up
+                to 50 seconds or more. Thanks for your patience.
               </p>
             </div>
           )}
